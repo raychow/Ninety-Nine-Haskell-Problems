@@ -24,11 +24,12 @@
 not' :: Bool -> Bool
 not' True = False
 not' False = True
+infixr 6 `not'`
 
 and' :: Bool -> Bool -> Bool
 and' True True = True
 and' _ _ = False
-infixr 3 `and'`
+infixr 4 `and'`
 
 or' :: Bool -> Bool -> Bool
 or' False False = False
@@ -37,22 +38,27 @@ infixr 2 `or'`
 
 nand' :: Bool -> Bool -> Bool
 nand' a b = not' $ and' a b
+infixr 4 `nand'`
 
 nor' :: Bool -> Bool -> Bool
 nor' a b = not' $ or' a b
+infixr 2 `nor'`
 
 xor' :: Bool -> Bool -> Bool
 xor' a b
     | a `equ'` b = True
     | otherwise = False
+infixr 3 `xor'`
 
 impl' :: Bool -> Bool -> Bool
 impl' a b = not' a `or'` b
+infixr 4 `impl'`
 
 equ' :: Bool -> Bool -> Bool
 equ' True True = True
 equ' False False = True
 equ' _ _ = False
+infixr 5 `equ'`
 
 table :: (Bool -> Bool -> Bool) -> IO ()
 table f = mapM_ (\(a, b) -> putStrLn $ show a ++ " " ++ show b ++ " " ++ show (f a b))
